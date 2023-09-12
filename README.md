@@ -50,7 +50,7 @@ Things you may want to cover:
 | condition_id          | integer    | null: false                    |
 | shipping_charge_id    | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
-| delivery_date         | integer    | null: false                    |
+| delivery_date_id      | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
@@ -64,7 +64,7 @@ Things you may want to cover:
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_code          | string     | null: false                    |
-| prefecture         | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | municipality       | string     | null: false                    |
 | street_address     | string     | null: false                    |
 | building_name      | string     |                                |
