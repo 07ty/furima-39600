@@ -66,7 +66,7 @@ describe 'ユーザー新規登録' do
     end
     it '姓が空では登録できない' do
       @user.last_name = ''
-      @sure.valid?
+      @user.valid?
       expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
     it '姓に半角文字が含まれていると登録できない' do
@@ -77,7 +77,7 @@ describe 'ユーザー新規登録' do
     it '名が空では登録できない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name can'be blank")
+      expect(@user.errors.full_messages).to include("First name can't be blank")
     end
     it '名（全角）に半角文字が含まれていると登録できない' do
       @user.first_name = 'name123'
