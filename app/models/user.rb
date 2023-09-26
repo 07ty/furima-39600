@@ -20,4 +20,6 @@ class User < ApplicationRecord
     validates :first_kana
   end
 
+  has_many :items
+
 end
