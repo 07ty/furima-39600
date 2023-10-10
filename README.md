@@ -40,7 +40,6 @@ Things you may want to cover:
 - has_many :items
 
 
-
 ## items テーブル
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
@@ -58,8 +57,6 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :purchase_record
 
-
-
 ## addresses テーブル
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -73,7 +70,6 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :purchase_record
-
 
 
 ## purchase_records テーブル
