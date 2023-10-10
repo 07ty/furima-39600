@@ -32,9 +32,6 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-  end
-  
-  
 
   def update
     if @item.update(item_params)

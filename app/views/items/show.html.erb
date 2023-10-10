@@ -8,11 +8,17 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
+
       <% if @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <% end %>
+
+     
+      <div class="sold-out">
+        <span>Sold Out!!</span>
+      </div>
     </div>
     <div class="item-price-box">
       <span class="item-price">
