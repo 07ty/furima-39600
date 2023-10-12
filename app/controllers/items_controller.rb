@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @purchase_records = PurchaseRecord.where(item_id: @item.id)
   if user_signed_in? && current_user.id != @item.user_id
     redirect_to root_path
@@ -30,12 +29,12 @@ end
   end
 
   def edit
-    @purchase_records = PurchaseRecord.where(item_id: @item.id)
-    if current_user != @item.user || (@purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id))
+    #@purchase_records = PurchaseRecord.where(item_id: @item.id)
+    #if current_user != @item.user || (@purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id))
       redirect_to action: :index
-    else
+    #else
       render :edit
-    end
+    #end
   end
 
   def update
