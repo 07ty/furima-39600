@@ -9,9 +9,9 @@
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
       <% if @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
       <% end %>
     </div>
     <div class="item-price-box">
@@ -24,15 +24,21 @@
     </div>
 
   <% unless @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) %>
-    <% if user_signed_in? && current_user.id == @item.user_id %>
-      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path, data: { turbo_method: :delete }, class:"item-destroy" %>
-    <% end %>
-    <% if user_signed_in? && current_user.id != @item.user_id %>
-        <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+    <% unless user_signed_in? && current_user.id == @item.user_id %>
+  <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
+    <p class="or-text">or</p>
+  <%= link_to "削除", item_path, data: { turbo_method: :delete }, class: "item-destroy" %>
+  <% else %>
+  <%= link_to "商品の編集", new_user_session_path, class: "item-red-btn" %>
+    <p class="or-text">or</p>
+  <%= link_to "削除", new_user_session_path, class: "item-destroy" %>
+  <% end %>
+
+      <% if user_signed_in? && current_user.id != @item.user_id %>
+        <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn" %>
       <% end %>
-    <% end %>
+<% end %>
+
     <div class="item-explain-box">
       <span><%= @item.description %></span>
     </div>
@@ -87,7 +93,7 @@
       </p>
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+        <span>コメントする</span>
       </button>
     </form>
   </div>
@@ -101,5 +107,4 @@
   </div>
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
-
 <%= render "shared/footer" %>
