@@ -29,7 +29,6 @@ end
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if current_user == @item.user
       @item.destroy
       redirect_to action: :index
