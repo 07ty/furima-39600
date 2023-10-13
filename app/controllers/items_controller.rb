@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :destroy, :edit]
+  before_action :authenticate_user!, only: [:new, :destroy, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy] 
 
   def index
@@ -28,13 +28,24 @@ end
     end
   end
 
-  def edit
-    #@purchase_records = PurchaseRecord.where(item_id: @item.id)
-    #if current_user != @item.user || (@purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id))
+  def destroy
+    @item = Item.find(params[:id])
+    if current_user == @item.user
+      @item.destroy
       redirect_to action: :index
-    #else
+    else
+      redirect_to item_path
+    end
+  end
+  
+
+  def edit
+    @purchase_records = PurchaseRecord.where(item_id: @item.id)
+    if current_user != @item.user || (@purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id))
+      redirect_to action: :index
+    else
       render :edit
-    #end
+    end
   end
 
   def update
