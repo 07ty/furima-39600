@@ -66,6 +66,13 @@ group :development do
   # gem "spring"
 end
 
+group :development, :test do
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
@@ -78,7 +85,7 @@ group :development do
 end
 
 group :production do
-gem 'pg'
+  gem 'pg'
 end
 
 gem 'devise'
@@ -86,3 +93,5 @@ gem 'devise'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'active_hash'
+gem 'payjp'
+gem 'gon'
