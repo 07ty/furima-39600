@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :destroy, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :destroy, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy] 
 
   def index
@@ -10,10 +10,7 @@ class ItemsController < ApplicationController
 
   def show
     @purchase_records = PurchaseRecord.where(item_id: @item.id)
-  if user_signed_in? && current_user.id != @item.user_id
-    redirect_to root_path
   end
-end
 
   def new
     @item = Item.new
@@ -31,10 +28,10 @@ end
   def destroy
     if current_user == @item.user
       @item.destroy
-      redirect_to action: :index
     else
       redirect_to item_path
     end
+    redirect_to action: :index
   end
   
 

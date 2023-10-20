@@ -15,9 +15,6 @@
         </div>
       <% end %>
 
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -28,17 +25,16 @@
       </span>
     </div>
 
-  <% unless @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) %>
-  <% if user_signed_in? %>
-    <% if current_user.id == @item.user_id %>
-      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path, data: { turbo_method: :delete }, class: "item-destroy" %>
-    <% end %>
-  <% end %>
-  <% if user_signed_in? && current_user.id != @item.user_id %>
-    <%#= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn" %>
-  <% end %>
+<% unless @purchase_records.present? && @purchase_records.pluck(:item_id).include?(@item.id) %>
+<% if user_signed_in? && current_user.id == @item.user_id %>
+<%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
+<p class="or-text">or</p>
+<%= link_to "削除", item_path, data: { turbo_method: :delete }, class:"item-destroy" %>
+<% end %>
+
+<% if user_signed_in? && current_user.id != @item.user_id %>
+<%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+<% end %>
 <% end %>
 
 
